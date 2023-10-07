@@ -16,13 +16,6 @@ app.use(express.json());
 app.use("/events", eventsRouter);
 app.use("/locations", locationsRouter);
 
-if (process.env.NODE_ENV === "development") {
-  app.use(favicon(path.resolve("../", "client", "public", "party.png")));
-} else if (process.env.NODE_ENV === "production") {
-  app.use(favicon(path.resolve("public", "party.png")));
-  app.use(express.static("public"));
-}
-
 // specify the api path for the server to use
 
 app.get("/", async (req, res) => {
