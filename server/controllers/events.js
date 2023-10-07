@@ -11,9 +11,10 @@ const getEvents = async (req, res) => {
 
 const getEventsById = async (req, res) => {
   const eventId = req.params.eventId;
+
   try {
     const selectQuery =
-      "SELECT name, date, venue, description, category, image WHERE id = $1";
+      "SELECT name, date, venue, description, category, image FROM events WHERE id = $1";
     const results = await pool.query(selectQuery, [eventId]);
     res.status(200).json(results.rows[0]);
   } catch (error) {
@@ -34,5 +35,5 @@ const getEventsByVenueName = async (venueName) => {
 export default {
   getEvents,
   getEventsById,
-  getEventsByVenueName
+  getEventsByVenueName,
 };
