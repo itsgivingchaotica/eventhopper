@@ -3,8 +3,8 @@ import LocationsController from "../controllers/locations.js";
 
 const router = express.Router();
 
-router.get("/", LocationsController.getGifts);
+router.get("/", LocationsController.getLocations);
 
-router.get("/:locationId", LocationsController.getGiftsById);
+router.get("/:locationId", LocationsController.getLocationsById);
 
 export default router;
