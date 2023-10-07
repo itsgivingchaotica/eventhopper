@@ -11,7 +11,7 @@ const createEventsTable = async () => {
         id SERIAL PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         date DATE NOT NULL,
-        time TIME NOT NULL,
+        time TIMESTAMP NOT NULL,
         venue VARCHAR(255) NOT NULL,
         description TEXT,
         category VARCHAR(255) NOT NULL,
@@ -55,14 +55,18 @@ const seedEventsTable = async () => {
   await createEventsTable();
 
   eventData.forEach((event) => {
+    // Split the date and time from the original strings
+    const [date, time] = event.time.split("T");
+    console.log(date);
+
     const insertQuery = {
       text: "INSERT INTO events (name, date, time, venue, description, category, image) VALUES ($1, $2, $3, $4, $5, $6, $7)",
     };
 
     const values = [
       event.name,
-      event.date,
-      event.time,
+      date, // Use the split date
+      event.time, // Use the split time
       event.venue,
       event.description,
       event.category,
