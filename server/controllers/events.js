@@ -21,7 +21,18 @@ const getEventsById = async (req, res) => {
   }
 };
 
+const getEventsByVenueName = async (venueName) => {
+  try {
+    const selectQuery = "SELECT * FROM events WHERE venue = $1 ORDER BY id ASC";
+    const results = await pool.query(selectQuery, [venueName]);
+    res.status(200).json(results.rows[0]);
+  } catch (error) {
+    res.status(409).json({ error: error.message });
+  }
+};
+
 export default {
   getEvents,
   getEventsById,
+  getEventsByVenueName
 };
