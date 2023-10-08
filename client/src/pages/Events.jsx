@@ -26,6 +26,9 @@ const Events = () => {
     // If no filter is applied or the request contains the selected value, include it
     return selectedVenue === "" || event.venue === selectedVenue;
   });
+  if (events) {
+    events.sort((a, b) => new Date(a.date) - new Date(b.date));
+  }
 
   return (
     <div className="location-events">
