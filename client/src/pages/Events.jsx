@@ -4,6 +4,7 @@ import EventsAPI from "../services/EventsAPI";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
+  const [selectedVenue, setSelectedVenue] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -16,17 +17,43 @@ const Events = () => {
     })();
   }, []);
 
+  const handleSelectChange = (e) => {
+    setSelectedVenue(e.target.value);
+  };
+
+  // Filter the requests based on the selected value
+  const filteredEvents = events.filter((event) => {
+    // If no filter is applied or the request contains the selected value, include it
+    return selectedVenue === "" || event.venue === selectedVenue;
+  });
+
   return (
     <div className="location-events">
       <header>
         <div className="location-info">
           <h2>Upcoming Events</h2>
         </div>
+        <div>
+          <select
+            id="fruit"
+            onChange={handleSelectChange}
+            value={selectedVenue}
+            required
+          >
+            <option value="" selected>
+              Filter by...
+            </option>
+            <option value="Javits Center">Javits Center</option>
+            <option value="Brooklyn Steel">Brooklyn Steel</option>
+            <option value="The Met">The Met </option>
+            <option value="Madison Square Garden">Madison Square Garden</option>
+          </select>
+        </div>
       </header>
 
       <main>
-        {events && events.length > 0 ? (
-          events.map((event, index) => (
+        {filteredEvents && filteredEvents.length > 0 ? (
+          filteredEvents.map((event, index) => (
             <Event
               key={event.id}
               id={event.id}
