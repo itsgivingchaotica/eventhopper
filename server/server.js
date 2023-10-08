@@ -14,18 +14,6 @@ app.use(express.json());
 app.use("/locations", locationsRouter);
 app.use("/events", eventsRouter);
 
-app.get("/locations", async (req, res) => {
-  try {
-    const resultsEvents = await pool.query("SELECT * FROM events");
-    const resultsLocations = await pool.query("SELECT * FROM locations");
-    const responseData = resultsLocations.rows;
-    console.log(responseData);
-    res.status(200).send(responseData);
-  } catch (error) {
-    res.status(409).json({ error: error.message });
-  }
-});
-
 if (process.env.NODE_ENV === "production") {
   app.get("/*", (_, res) => res.sendFile(path.resolve("public", "index.html")));
 }
