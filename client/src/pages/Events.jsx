@@ -1,20 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Event from "../components/Event";
+import EventsAPI from "../services/EventsAPI";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
 
+  useEffect(() => {
+    (async () => {
+      try {
+        const eventsData = await EventsAPI.getAllEvents();
+        setEvents(eventsData);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, []);
+
   return (
     <div className="location-events">
       <header>
-        <div className="location-image">
-          <img src={location.image} />
-        </div>
-
         <div className="location-info">
-          <h2>{location.name}</h2>
-          <p>
-            {location.address}, {location.city}, {location.state} {location.zip}
-          </p>
+          <h2>Upcoming Events</h2>
         </div>
       </header>
 

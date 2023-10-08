@@ -11,33 +11,26 @@ const LocationEvents = ({ index }) => {
   useEffect(() => {
     (async () => {
       try {
-        const locationEventsData = await EventsAPI.getAllEvents();
-        console.log(locationEventsData, "data");
-        console.log(index, "INDEX");
-        setEvents(locationEventsData);
         const locationData = await LocationsAPI.getLocationById(index);
-        setLocation(locationData.data);
-        console.log(location);
-        location.filter((event) => event.venue !== location.name);
-        setLocation(location);
-        console.log(locationData, "locationdata");
+        setLocation(locationData);
+        const locationEventsData = await EventsAPI.getAllEvents();
+        const events = locationEventsData.filter((event) => {
+          return event.venue === locationData.name;
+        });
+        console.log(events);
+
+        setEvents(events);
       } catch (error) {
-        console.error(error); // Log the error
-        // Handle the error here or rethrow it if needed
+        console.error(error); 
       }
     })();
   }, []);
-
-  useEffect(() => {
-    if (events) {
-    }
-  }, [events]);
 
   return location ? (
     <div className="location-events">
       <header>
         <div className="location-image">
-          <img src={`url/${location.image}`} />
+          <img src={location.image} />
         </div>
 
         <div className="location-info">

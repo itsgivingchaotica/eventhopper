@@ -14,7 +14,7 @@ app.use(express.json());
 app.use("/locations", locationsRouter);
 app.use("/events", eventsRouter);
 
-app.get("/", async (req, res) => {
+app.get("/locations", async (req, res) => {
   try {
     const resultsEvents = await pool.query("SELECT * FROM events");
     const resultsLocations = await pool.query("SELECT * FROM locations");

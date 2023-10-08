@@ -3,9 +3,6 @@ import LocationsController from "../controllers/locations.js";
 
 export const locationsRouter = express.Router();
 
-locationsRouter.get("/locations", LocationsController.getLocations);
+locationsRouter.get("/", LocationsController.getLocations);
 
-locationsRouter.get(
-  "/locations/:locationId",
-  LocationsController.getLocationsById
-);
+locationsRouter.get("/:locationId", LocationsController.getLocationsById);
