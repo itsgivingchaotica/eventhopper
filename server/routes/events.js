@@ -1,12 +1,10 @@
 import express from "express";
 import EventsController from "../controllers/events.js";
 
-const router = express.Router();
+export const eventsRouter = express.Router();
 
-router.get("/", EventsController.getEvents);
+eventsRouter.get("/", EventsController.getEvents);
 
-router.get("/:eventId", EventsController.getEventsById);
+eventsRouter.get("/:eventId", EventsController.getEventsById);
 
-router.get("/venue/:venueName", EventsController.getEventsByVenueName);
-
-export default router;
+eventsRouter.get("/:venueName", EventsController.getEventsByVenueName);

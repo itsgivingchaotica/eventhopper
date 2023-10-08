@@ -1,7 +1,7 @@
-const API_BASE_URL = 'http://localhost:3000'
+const API_BASE_URL = "http://localhost:3000";
 
 // Function to get all events
-export const getAllEvents = async () => {
+const getAllEvents = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/events`);
     if (!response.ok) {
@@ -9,18 +9,23 @@ export const getAllEvents = async () => {
     }
     return response.json();
   } catch (error) {
-    console.error('Error fetching events:', error);
+    console.error("Error fetching events:", error);
     throw error;
   }
 };
 
 // Function to get an event by its ID
-export const getEventById = async (eventId) => {
+const getEventById = async (eventId) => {
+  console.log(eventId, "helo");
   try {
     const response = await fetch(`${API_BASE_URL}/events/${eventId}`);
+    console.log(response, "gooybe");
     if (!response.ok) {
-      throw new Error(`Failed to fetch event with ID ${eventId}: ${response.status}`);
+      throw new Error(
+        `Failed to fetch event with ID ${eventId}: ${response.status}`
+      );
     }
+    console.log(response.data);
     return response.json();
   } catch (error) {
     console.error(`Error fetching event with ID ${eventId}:`, error);
@@ -28,3 +33,7 @@ export const getEventById = async (eventId) => {
   }
 };
 
+export default {
+  getAllEvents,
+  getEventById,
+};
