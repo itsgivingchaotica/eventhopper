@@ -24,12 +24,8 @@ The following **required** functionality is completed:
 
 The following **optional** features are implemented:
 
-- [ ] An additional page shows all possible `Events` that the user can sort and filter by `Location`
+- [x] An additional page shows all possible `Events` that the user can sort and filter by `Location`
 - [x] `Events` display a countdown showing the time remaining before that event and appears with different formatting when the event has passed
-
-The following **additional** features are implemented:
-
-- [ ] List anything else that you added to improve the site's functionality!
 
 ## Video Walkthrough
 
@@ -37,7 +33,7 @@ Here's a walkthrough of implemented required features:
 
 <div align="center">
 
-<img src='' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2JmZGpodGxpMXJkOTZzNzJmZmhvYmVmeGFwYWgxYTBpYzV2M3c3byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GOb5FktYnZrxPFja6e/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 </div>
 
 <!-- Replace this with whatever GIF tool you used! -->
